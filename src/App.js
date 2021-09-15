@@ -1,17 +1,17 @@
 import './App.css';
-import { BrowserRouter, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Sidebar from "./Components/Sidebar";
 import AddRingPage from './Components/AddRingPage';
-import { Component } from 'react';
+import React from 'react';
 import Profile from './Components/ProfilePage';
 import DashboardPage from './Components/dashboardPage';
 import StatisticsPage from './Components/StatisticsPage';
 
 
-class App extends Component{
-  render(){
+const App=()=>{
+
     return(
-      <BrowserRouter>
+      <div>
       <div className ="App">
         <Sidebar/>
         <Switch>
@@ -21,10 +21,10 @@ class App extends Component{
           <Route path="/Statistics" component={StatisticsPage}/>
         </Switch>
       </div>
-      </BrowserRouter>
+      </div>
     );
 
-  }
+  
 }
 
   
