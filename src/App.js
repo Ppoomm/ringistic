@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Sidebar from "./Components/Sidebar";
+import AddRingPage from './Components/AddRingPage';
+import { Component } from 'react';
+import Profile from './Components/ProfilePage';
+import DashboardPage from './Components/dashboardPage';
+import StatisticsPage from './Components/StatisticsPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+  render(){
+    return(
+      <BrowserRouter>
+      <div className ="App">
+        <Sidebar/>
+        <Switch>
+          <Route path="/" component={DashboardPage} exact/>
+          <Route path="/ring/add" component ={AddRingPage}/>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/Statistics" component={StatisticsPage}/>
+        </Switch>
+      </div>
+      </BrowserRouter>
+    );
+
+  }
 }
+
+  
 
 export default App;
