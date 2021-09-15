@@ -12,8 +12,10 @@ function Sidebar() {
 
     <div className="Sidebar">
       <ul className="SidebarList">
+        <div className="logo-box"> 
         <div className = "logo">
           <img src={logo} alt="logo"/>
+        </div>
         </div>
         {SidebarData.map((val, key) => {
           return (
