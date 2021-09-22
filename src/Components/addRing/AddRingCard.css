@@ -1,0 +1,39 @@
+.add-ring__card {
+  display: flex;
+  justify-content:space-between;
+  background-color: #fff;
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 28px 16px;
+  margin-top: 40px;
+}
+.card-heading {
+  font-size: 18px;
+  font-weight: bold;
+}
+.card-subheading {
+  margin-top: 4px;
+  font-size: 12px;
+}
+.ring-status{
+    width: min-content;
+    border-radius: 50px;
+    padding: 6px 25px;
+    
+}
+.ring-status__green{
+  border: 1px solid #9AE6B4;
+    color: #9AE6B4;
+}
+.ring-status__yellow{
+  border: 1px solid yellow;
+    color: yellow;
+}
+.ring-status__red{
+  border: 1px solid red;
+    color: red;
+}
+
+.box-full__height{
+  height: 100%;
+}
