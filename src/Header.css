@@ -1,0 +1,43 @@
+.root {
+  justify-content: center;
+  margin: 20px;
+}
+.paper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: bold;
+  padding: 18px;
+}
+.paper-active {
+  background-color: #F3D8D8 !important;
+  color:#fff;
+}
+.hr-line {
+  border: 1px solid;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.logo-box{
+
+  display:flex;
+  justify-content:center;
+}
+.logo{
+    width: 100px;
+  height: 100px;
+}
+.capitalize{
+  text-transform: capitalize;
+}
