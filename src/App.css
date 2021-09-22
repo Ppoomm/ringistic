@@ -2,25 +2,22 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-
 }
-.Sidebar{
+.Sidebar {
   width: 250px;
   height: 100vh;
-  background-color: #1E3C49;
+  background-color: #1e3c49;
+  position:fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
 }
-body{
+body {
   margin: 0;
   padding: 0;
 }
-.SidebarList{
-  height: auto;
-  width: 100%;
-  padding: 0;
-}
-.SidebarList .row{
-  width: 100%;
-  height: 50px;
+
+.Sidebar .row {
   list-style-type: none;
   margin: 0;
   display: flex;
@@ -28,21 +25,22 @@ body{
   color: white;
   justify-content: center;
   align-items: center;
-  font-family: Livvic;
+  font-family: "Livvic";
   text-decoration-line: none;
-  
 
+  padding: 16px 10px;
 }
 
-.SidebarList .row:hover {
+.Sidebar .row:hover {
   cursor: pointer;
-  background-color: #FF8989 ;
+  background-color: #ff8989;
 }
 
-.SidebarList #active{
-  background-color: #FF8989 ;
+.Sidebar #active {
+  background-color: #ff8989;
+  color: black;
 }
-.row #icon{
+.row #icon {
   flex: 10%;
   display: grid;
   place-items: center;
@@ -51,9 +49,11 @@ body{
 .row #title {
   flex: 50%;
 }
-
-
-
-
-
-
+.content {
+  width: calc(100vw - 250px);
+  margin-left: 250px;
+}
+.icon-column{
+  display:flex;
+  flex-direction:column;
+}
