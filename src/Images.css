@@ -1,48 +1,11 @@
-.logo {
-  width: 100px;
-  height: 100px;
-  
- 
-  
-}
-.logo-box{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
 
-}
 
-img {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
 
-}
-.img-dashboard {
-  width: 100px;
-  height: 100px;
-  /* margin-top: 30px;
-  justify-content: center; */
-}
 
-.root{
-  justify-content: center;
-}
-.paper {
-    text-align: center;
 
-}
-.dash-card{
-  background-color: red;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 2px 5px #888888;
-  
-}
-.line{
-  background-color: black;
-  height: 1px;
-  width: 100px;
-  margin-bottom: 200px;
-}
+
+
+
+
+
 
