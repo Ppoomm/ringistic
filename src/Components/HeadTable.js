@@ -39,23 +39,29 @@ const HeadTable = () => {
           startAdornment={<EditIcon classes={{ root: classes.searchIcon }} />}
         />
       </Box>
-      <Box borderBottom={1} borderColor="grey.500" paddingY={2} display="flex" justifyContent="space-between">
+      <Box
+        borderBottom={1}
+        borderColor="grey.500"
+        paddingY={2}
+        display="flex"
+        justifyContent="space-between"
+      >
         <Grid container justify="center" alignItems="center">
-           <Grid item md={3}className="card-heading">
-              Title
+          <Grid item md={3} className="card-heading">
+            Title
           </Grid>
           <Grid item md={3} className="card-heading">
-              Status
+            Status
           </Grid>
           <Grid item md={3} className="card-heading">
-              Available
+            Available
           </Grid>
           <Grid item md={3}>
-          <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center">
               <Button startIcon={<EditIcon />} className={classes.button}>
                 Add New
               </Button>
-              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Box>
