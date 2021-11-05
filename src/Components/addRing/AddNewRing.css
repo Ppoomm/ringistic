@@ -1,0 +1,34 @@
+.paper-add {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: flex-start;
+  width: 760px;
+  height: 734px;
+  margin-top: 50px;
+  flex-direction: column;
+}
+/* .paper{
+    display: flex;
+    justify-content: center;
+} */
+.hr-line {
+  border: 0.5px solid;
+  width: 100%;
+  color: #d9d9d9;
+}
+.head {
+  padding-left: 30px;
+  font-size: 30px;
+}
+.input {
+  border-radius: 20px;
+  width: 673px;
+  height: 54px;
+  margin-left: 42px;
+}
+.input-ring {
+  width: 673px;
+  height: 197px;
+  border-radius: 20px;
+  margin-left: 42px;
+}

@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "../HeadTable.css";
 import { Grid, Button, Box, OutlinedInput } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import EditIcon from "@material-ui/icons/Edit";
+import AddNewRing from "../Components/addRing/AddNewRing";
 
 const useStyles = makeStyles({
   searchInput: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 
 const HeadTable = () => {
   const classes = useStyles();
+  const [openPopup, setOpenPopup] = useState(false);
   return (
     <Fragment>
       <Box display="flex" justifyContent="center">
@@ -58,13 +60,20 @@ const HeadTable = () => {
           </Grid>
           <Grid item md={3}>
             <Box display="flex" justifyContent="center">
-              <Button startIcon={<EditIcon />} className={classes.button}>
+              <Button
+                startIcon={<EditIcon />}
+                className={classes.button}
+                onClick={() => setOpenPopup(true)}
+              >
                 Add New
               </Button>
             </Box>
           </Grid>
         </Grid>
       </Box>
+      <AddNewRing openPopup = {openPopup} setOpenPopup={setOpenPopup}>
+        
+      </AddNewRing>
     </Fragment>
   );
 };

@@ -13,7 +13,7 @@ import DressPage from "./Pages/DressPage";
 import DiamondPage from "./Pages/DiamondPage";
 import logo from "./assets/images/logo.png";
 import StatisticsPage from "./Pages/StatisticsPage";
-import { AddNewRing } from "./Pages/AddNewRing";
+import { AddNewRing } from "./Components/addRing/AddNewRing";
 
 const App = () => {
 
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/engagement/detail" component={EngagementPage} exact />
           <Route path="/dress/detail" component={DressPage} exact />
           <Route path="/diamond/detail" component={DiamondPage} exact />
-          <Route path="/AddNewRing" component={AddNewRing} exact />
+          {/* <Route path="/AddNewRing" component={AddNewRing} exact /> */}
 
         </Switch>
       </div>
