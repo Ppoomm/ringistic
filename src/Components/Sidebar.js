@@ -5,15 +5,19 @@ import { SidebarData } from "./SidebarData";
 import logo from "../assets/images/logo.png";
 import "../Images.css";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import { useHistory } from "react-router-dom";
 
 const Sidebar = () => {
   const location = useLocation();
+  
+  
 
   return (
     <div className="Sidebar">
         <div className="logo-box">
           <div className="logo">
             <img src={logo} alt="logo" />
+
           </div>
         </div>
         <div  className="icon-column">

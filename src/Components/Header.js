@@ -1,7 +1,7 @@
 import React from "react";
 import wedding from "../assets/images/wedding.png";
 import dress from "../assets/images/dress.png";
-import engagement from "../assets/images/engagement.png"
+import engagement from "../assets/images/engagement.png";
 import diamond from "../assets/images/diamond.png";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
 import "../Header.css";
@@ -17,7 +17,6 @@ const typesList = [
 
 const Header = () => {
   const history = useHistory();
-
 
   return (
     <div className="root">

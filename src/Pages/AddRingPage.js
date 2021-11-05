@@ -18,7 +18,7 @@ function AddRingPage() {
     <div className={classes.box}>
       <HeadTable />
       <AddRingCard status="Published"/>
-      <AddRingCard status="Pending"/>
+      <AddRingCard status="Published"/>
       <AddRingCard status="Deleted"/>
       <AddRingCard status="Published"/>
       <AddRingCard status="Published"/>

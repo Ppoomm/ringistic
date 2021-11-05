@@ -12,6 +12,8 @@ import EngagementPage from "./Pages/EngagementPage";
 import DressPage from "./Pages/DressPage";
 import DiamondPage from "./Pages/DiamondPage";
 import logo from "./assets/images/logo.png";
+import StatisticsPage from "./Pages/StatisticsPage";
+import { AddNewRing } from "./Pages/AddNewRing";
 
 const App = () => {
 
@@ -22,11 +24,14 @@ const App = () => {
         <Switch>
           <Route path="/" component={DashboardPage} exact />
           <Route path="/ring/add" component={AddRingPage} exact />
+          <Route path="/Statistics" component={StatisticsPage} exact />
           <Route path="/profile" component={ProfilePage} exact />
           <Route path="/wedding/detail" component={WeddingPage} exact />
           <Route path="/engagement/detail" component={EngagementPage} exact />
           <Route path="/dress/detail" component={DressPage} exact />
           <Route path="/diamond/detail" component={DiamondPage} exact />
+          <Route path="/AddNewRing" component={AddNewRing} exact />
+
         </Switch>
       </div>
     </div>

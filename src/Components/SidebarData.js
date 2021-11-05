@@ -16,11 +16,11 @@ export const SidebarData = [
     Icon: <AddIcon />,
     Link: "/ring/add",
   },
-  // {
-  //     title: "Statistics",
-  //     Icon: <EqualizerIcon/>,
-  //     Link:"/Statistics"
-  // },
+  {
+      title: "Statistics",
+      Icon: <EqualizerIcon/>,
+      Link:"/Statistics"
+  },
   {
     title: "Profile",
     Icon: <AccountCircleIcon />,
