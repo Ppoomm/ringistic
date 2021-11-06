@@ -9,25 +9,25 @@ import {
 } from "@material-ui/core";
 import { DropzoneArea } from "material-ui-dropzone";
 
-export default function AddNewRing(props) {
+export default function EditPopup(props) {
   const { title, children, openPopup, setOpenPopup } = props;
 
   return (
-    <Dialog open={openPopup} fullWidth maxWidth="lg">
-      <DialogTitle>
-        <div style={{fontWeight:'bold',fontSize:'22px'}}>Add new ring</div>
+    <Dialog open={openPopup} fullWidth maxWidth="lg" >
+      <DialogTitle >
+        <div style={{fontWeight:'bold',fontSize:'22px'}}>Edit Profile</div>
       </DialogTitle>
       <DialogContent>
         <TextField
           id="standard-search"
-          label="Ring name"
+          label="Brand"
           type="search"
           variant="standard"
           fullWidth
         />
         <TextField
           id="standard-search"
-          label="Description"
+          label="Total ring"
           type="search"
           variant="standard"
           fullWidth
@@ -35,15 +35,23 @@ export default function AddNewRing(props) {
         />
         <TextField
           id="standard-search"
-          label="Price"
+          label="Phone number"
+          type="search"
+          variant="standard"
+          fullWidth
+          style={{ marginTop: "15px" }}
+        />
+        <TextField
+          id="standard-search"
+          label="Email"
           type="search"
           variant="standard"
           fullWidth
           style={{ marginTop: "15px" }}
         />
 
-        <div style={{ marginTop: "20px", marginBottom: "20px",fontWeight:'bold',fontSize:'18px' }}>Ring file</div>
-        <DropzoneArea acceptedFiles={[".obj",".FBX"]} onChange={(files) => console.log("Files:", files) }  />
+        <div style={{ marginTop: "20px", marginBottom: "20px",fontWeight:'bold',fontSize:'18px' }}>Picture</div>
+        <DropzoneArea acceptedFiles={["image/*"]} onChange={(files) => console.log("Files:", files) }  />
         <Box
           style={{
             marginTop: "25px",
