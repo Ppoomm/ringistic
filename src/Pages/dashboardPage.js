@@ -1,15 +1,16 @@
 import React from "react";
-import { Container, Grid, Paper, Typography } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 import CardDashboard from "../Components/Card";
-import Sidebar from "../Components/Sidebar";
 import Header from "../Components/Header";
 import "../DashboardPage.css"
+import Sidebar from "../Components/Sidebar";
 
 
 const DashboardPage = () => {
 
   return (
     <div className="dashboard-body">
+    <Sidebar/>
     <Header/>
     
         <Grid

@@ -3,10 +3,12 @@ import { Typography, Box, Paper, Grid, Button } from "@material-ui/core";
 import wed1 from "../assets/images/wed1.png";
 import EditIcon from "@material-ui/icons/Edit";
 import EditPopup from "../Components/EditProfile/EditPopup";
+import Sidebar from "../Components/Sidebar";
 const ProfilePage = () => {
   const [openPopup, setOpenPopup] = useState(false);
   return (
     <Box>
+      <Sidebar />
       <Typography
         style={{ fontSize: "30px", fontWeight: "bold", margin: "40px 250px" }}
       >

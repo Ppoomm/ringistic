@@ -11,15 +11,13 @@ import WeddingPage from "./Pages/WeddingPage";
 import EngagementPage from "./Pages/EngagementPage";
 import DressPage from "./Pages/DressPage";
 import DiamondPage from "./Pages/DiamondPage";
-import logo from "./assets/images/logo.png";
 import StatisticsPage from "./Pages/StatisticsPage";
-import { AddNewRing } from "./Components/addRing/AddNewRing";
-
+import SignIn from "./Pages/LoginPage/SignIn";
 const App = () => {
 
   return (
     <div className="App">
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <div className="content">
         <Switch>
           <Route path="/" component={DashboardPage} exact />
@@ -30,6 +28,7 @@ const App = () => {
           <Route path="/engagement/detail" component={EngagementPage} exact />
           <Route path="/dress/detail" component={DressPage} exact />
           <Route path="/diamond/detail" component={DiamondPage} exact />
+          <Route path="/SignIn" component={SignIn} exact />
           {/* <Route path="/AddNewRing" component={AddNewRing} exact /> */}
 
         </Switch>

@@ -5,7 +5,7 @@ import { SidebarData } from "./SidebarData";
 import logo from "../assets/images/logo.png";
 import "../Images.css";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
-import { useHistory } from "react-router-dom";
+
 
 const Sidebar = () => {
   const location = useLocation();

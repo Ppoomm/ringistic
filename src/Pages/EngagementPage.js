@@ -4,10 +4,12 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import "./WeddingPage.css";
 import wed1 from "../assets/images/wed1.png";
 import wed2 from "../assets/images/wed2.png";
+import Sidebar from "../Components/Sidebar";
 
 const EngagementPage = () => {
   return (
     <div>
+      <Sidebar />
       <Header />
       <div className="add-ring__card">
         <Grid container>

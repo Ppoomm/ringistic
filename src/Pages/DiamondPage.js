@@ -4,12 +4,14 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import "./WeddingPage.css";
 import wed1 from "../assets/images/wed1.png";
 import wed2 from "../assets/images/wed2.png";
+import Sidebar from "../Components/Sidebar";
 
 const DiamondPage = () => {
-    return (
-        <div>
-            <Header/>
-            <div className="add-ring__card">
+  return (
+    <div>
+      <Sidebar/>
+      <Header />
+      <div className="add-ring__card">
         <Grid container>
           <box>
             <img className="wedding1" src={wed1} alt="wed1" />
@@ -72,8 +74,8 @@ const DiamondPage = () => {
           </Grid>
         </Grid>
       </div>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default DiamondPage
+export default DiamondPage;
