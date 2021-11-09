@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import logo from "../../assets/images/logo.png";
 
-const SingIn = () => {
+const SignUp = () => {
   return (
     <Box >
       <Grid container style={{ marginLeft: "-250px" }}>
@@ -50,11 +50,32 @@ const SingIn = () => {
                 marginBottom: "30px",
               }}
             >
-              Admin login
+              Admin SignUp
             </Typography>
+            <TextField
+              id="Name"
+              label="Name"
+              variant="outlined"
+              fullWidth
+              style={{ marginBottom: "30px" }}
+            />
             <TextField
               id="Email"
               label="Email"
+              variant="outlined"
+              fullWidth
+              style={{ marginBottom: "30px" }}
+            />
+            <TextField
+              id="Phone-number"
+              label="Phone number"
+              variant="outlined"
+              fullWidth
+              style={{ marginBottom: "30px" }}
+            />
+            <TextField
+              id="Brand"
+              label="Brand"
               variant="outlined"
               fullWidth
               style={{ marginBottom: "30px" }}
@@ -75,12 +96,12 @@ const SingIn = () => {
                 padding: "12px 0px",
               }}
             >
-              Sign in
+              Sign Up
             </Button>
             
-              <Typography style={{ color: "#C8C8C8", marginTop: "15px",marginLeft:'260px' }}>
-                Don’t have an acccount ?
-                <span style={{ color: "#FEDA7D",textDecorationLine:'underline' }} > Sign Up</span>
+              <Typography style={{ color: "#C8C8C8", marginTop: "15px",marginLeft:'380px' }}>
+                Already have an account?
+                <span style={{ color: "#FEDA7D",textDecorationLine:'underline' }} > Sign In</span>
               </Typography>
            
           </Box>
@@ -89,4 +110,4 @@ const SingIn = () => {
     </Box>
   );
 };
-export default SingIn;
+export default SignUp;

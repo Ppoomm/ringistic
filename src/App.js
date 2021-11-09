@@ -13,6 +13,7 @@ import DressPage from "./Pages/DressPage";
 import DiamondPage from "./Pages/DiamondPage";
 import StatisticsPage from "./Pages/StatisticsPage";
 import SignIn from "./Pages/LoginPage/SignIn";
+import SignUp from "./Pages/LoginPage/SignUp";
 const App = () => {
 
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/dress/detail" component={DressPage} exact />
           <Route path="/diamond/detail" component={DiamondPage} exact />
           <Route path="/SignIn" component={SignIn} exact />
+          <Route path="/SignUp" component={SignUp} exact />
           {/* <Route path="/AddNewRing" component={AddNewRing} exact /> */}
 
         </Switch>
