@@ -1,10 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import logo from "../../assets/images/logo.png";
+import auth from "../../firebase";
 
-const SingIn = () => {
+const SignIn = () => {
+  const [userName, setUserName] = useState('');
+  const [passWord, setPassWord] = useState('');
+
+  const handleLogin = async () =>{
+   
+    const response = await auth.signInWithEmailAndPassword(userName,passWord);
+    const {user} = response;
+    console.log('user',user);
+  }
+  const handleUserName = event =>{
+    setUserName(event.target.value)
+  }
+  const handlePassWord = event =>{
+    setPassWord(event.target.value)
+  }
   return (
-    <Box >
+    <Box>
       <Grid container style={{ marginLeft: "-250px" }}>
         <Grid
           item
@@ -57,6 +73,7 @@ const SingIn = () => {
               label="Email"
               variant="outlined"
               fullWidth
+              onChange={handleUserName}
               style={{ marginBottom: "30px" }}
             />
             <TextField
@@ -64,6 +81,7 @@ const SingIn = () => {
               label="Password"
               variant="outlined"
               fullWidth
+              onChange={handlePassWord}
               style={{ marginBottom: "30px" }}
             />
             <Button
@@ -74,19 +92,30 @@ const SingIn = () => {
                 borderRadius: "30px",
                 padding: "12px 0px",
               }}
+              onClick={handleLogin}
             >
               Sign in
             </Button>
-            
-              <Typography style={{ color: "#C8C8C8", marginTop: "15px",marginLeft:'260px' }}>
-                Don’t have an acccount ?
-                <span style={{ color: "#FEDA7D",textDecorationLine:'underline' }} > Sign Up</span>
-              </Typography>
-           
+
+            <Typography
+              style={{
+                color: "#C8C8C8",
+                marginTop: "15px",
+                marginLeft: "260px",
+              }}
+            >
+              Don’t have an acccount ?
+              <span
+                style={{ color: "#FEDA7D", textDecorationLine: "underline" }}
+              >
+                {" "}
+                Sign Up
+              </span>
+            </Typography>
           </Box>
         </Grid>
       </Grid>
     </Box>
   );
 };
-export default SingIn;
+export default SignIn;
