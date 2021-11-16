@@ -1,24 +1,39 @@
-import React,{useState} from "react";
+import React, { useState, useContext } from "react";
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import logo from "../../assets/images/logo.png";
 import auth from "../../firebase";
-
+import { AuthContext } from "../../context/context";
+import { Redirect } from "react-router-dom";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
 const SignIn = () => {
-  const [userName, setUserName] = useState('');
-  const [passWord, setPassWord] = useState('');
-
-  const handleLogin = async () =>{
+  const [userName, setUserName] = useState("");
+  const [passWord, setPassWord] = useState("");
+  const authContext = useContext(AuthContext);
+  const handleLogin = async () => {
+    console.log("signin");
+    try{
+    
+    const response = await auth.signInWithEmailAndPassword(userName, passWord);
+    const { user } = response;
+    }catch(error){
+      alert(error)
+    }
    
-    const response = await auth.signInWithEmailAndPassword(userName,passWord);
-    const {user} = response;
-    console.log('user',user);
+  };
+  if (authContext.isAuth) {
+    return <Redirect to="/" />;
   }
-  const handleUserName = event =>{
-    setUserName(event.target.value)
-  }
-  const handlePassWord = event =>{
-    setPassWord(event.target.value)
-  }
+  const handleUserName = (event) => {
+    setUserName(event.target.value);
+  };
+  const handlePassWord = (event) => {
+    setPassWord(event.target.value);
+  };
+
+  
   return (
     <Box>
       <Grid container style={{ marginLeft: "-250px" }}>
@@ -81,6 +96,7 @@ const SignIn = () => {
               label="Password"
               variant="outlined"
               fullWidth
+              type="password"
               onChange={handlePassWord}
               style={{ marginBottom: "30px" }}
             />
@@ -105,12 +121,14 @@ const SignIn = () => {
               }}
             >
               Don’t have an acccount ?
-              <span
-                style={{ color: "#FEDA7D", textDecorationLine: "underline" }}
-              >
-                {" "}
-                Sign Up
-              </span>
+              <a href="/SignUp">
+                <span
+                  style={{ color: "#FEDA7D", textDecorationLine: "underline" }}
+                >
+                  {" "}
+                  Sign Up
+                </span>
+              </a>
             </Typography>
           </Box>
         </Grid>

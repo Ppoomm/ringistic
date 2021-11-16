@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../App.css";
 import { SidebarData } from "./SidebarData";
@@ -7,13 +7,10 @@ import "../Images.css";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import { Button, Grid } from "@material-ui/core";
 import auth from "../firebase";
+import AuthContextProvider, { AuthContext } from "../context/context";
 const Sidebar = () => {
+  const authContext = useContext(AuthContext)
   const location = useLocation();
-  const [session, setSession] = useState({
-    isLoggedIn: true,
-    currentUser: null,
-    errorMessage: null,
-  });
   return (
     <div className="Sidebar">
       <div>
@@ -51,12 +48,13 @@ const Sidebar = () => {
             bottom: "0px",
           }}
           onClick={() => {
-            auth.signOut().then((response) => {
-              setSession({
-                isLoggedIn: false,
-                currentUser: null,
-              });
-            }, window.location.reload(false));
+            auth.signOut().then(() => {
+              // setSession({
+              //   isLoggedIn: false,
+              //   currentUser: null,
+              // });
+              authContext.logout();
+            })
           }}
         >
           Logout
