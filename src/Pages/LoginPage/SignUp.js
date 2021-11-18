@@ -2,23 +2,57 @@ import React, { useState } from "react";
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import logo from "../../assets/images/logo.png";
 import auth from "../../firebase/index"
+import firebase from "firebase/compat";
 import { Redirect } from "react-router-dom";
 const SignUp = () => {
   const [isSignUp,setIsSignUp] = useState(null)
-   const [Email, setEmail] = useState("");
+  const [Email, setEmail] = useState("");
   const [Password, setPassWord] = useState("");
-  
+  const [FirstName,setFirstName] = useState("");
+  const [LastName,setLastName] = useState("");
+  const [Phonenumber,setPhonenumber] = useState("");
+  const [Brand,setBrand] = useState("");
+  const db = firebase.firestore();
   const handdleEmail = (e) => {
     setEmail(e.target.value)
   }
   const handdlePassword = (e) => {
     setPassWord(e.target.value)
   }
+  const handdleAll = (e) => {
+    setFirstName(e.target.value);
+    setLastName(e.target.value);
+    setPhonenumber(e.target.value);
+    setBrand(e.target.value);
+  }
+  const handdleFirstName = (e) =>{
+    setFirstName(e.target.value);
+  } 
+  const handdleLastName = (e) =>{
+    setLastName(e.target.value);
+  }
+  const handdleBrand= (e) =>{
+    setBrand(e.target.value);
+  }
+  const handdlePhonenumber=(e)=>{
+    setPhonenumber(e.target.value);
+  }
+  
   const handdleSignUp =  async (e) => {
     e.preventDefault();
     console.log("signup")
     try{
-       await auth.createUserWithEmailAndPassword(Email,Password);
+       const curUser = await auth.createUserWithEmailAndPassword(Email,Password);
+       var data = {
+        Email: Email, 
+        FirstName: FirstName,
+        LastName: LastName,
+        Phonenumber: Phonenumber,
+        Brand: Brand,
+        uid: curUser.user.uid,
+        role: "1"
+       }
+       await db.collection('user').add(data);
        setIsSignUp(true)
     }catch(error){
       alert(error);
@@ -76,13 +110,22 @@ const SignUp = () => {
             >
               Admin SignUp
             </Typography>
-            {/* <TextField
-              id="Name"
-              label="Name"
+            <TextField
+              id="FirstName"
+              label="First Name"
               variant="outlined"
               fullWidth
               style={{ marginBottom: "30px" }}
-            /> */}
+              onChange={handdleFirstName}
+            />
+            <TextField
+              id="Last Name"
+              label="Last Name"
+              variant="outlined"
+              fullWidth
+              style={{ marginBottom: "30px" }}
+              onChange={handdleLastName}
+            />
             <TextField
               id="Email"
               label="Email"
@@ -100,12 +143,13 @@ const SignUp = () => {
               style={{ marginBottom: "30px" }}
               onChange={handdlePassword}
             />
-            {/* <TextField
-              id="Phone-number"
+            <TextField
+              id="Phonenumber"
               label="Phone number"
               variant="outlined"
               fullWidth
               style={{ marginBottom: "30px" }}
+              onChange={handdlePhonenumber}
             />
             <TextField
               id="Brand"
@@ -113,7 +157,8 @@ const SignUp = () => {
               variant="outlined"
               fullWidth
               style={{ marginBottom: "30px" }}
-            /> */}
+              onChange={handdleBrand}
+            />
 
             <Button
               style={{
@@ -132,7 +177,7 @@ const SignUp = () => {
               style={{
                 color: "#C8C8C8",
                 marginTop: "15px",
-                marginLeft: "380px",
+                marginLeft: "200px",
               }}
             >
               Already have an account?

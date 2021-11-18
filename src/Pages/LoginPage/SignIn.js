@@ -117,7 +117,7 @@ const SignIn = () => {
               style={{
                 color: "#C8C8C8",
                 marginTop: "15px",
-                marginLeft: "260px",
+                marginLeft: "185px",
               }}
             >
               Don’t have an acccount ?

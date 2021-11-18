@@ -1,12 +1,46 @@
-import React,{useState} from "react";
+import React, { useState ,useEffect} from "react";
 import { Typography, Box, Paper, Grid, Button } from "@material-ui/core";
 import wed1 from "../assets/images/wed1.png";
 import EditIcon from "@material-ui/icons/Edit";
 import EditPopup from "../Components/EditProfile/EditPopup";
+import firebase from "firebase/compat";
 import Sidebar from "../Components/Sidebar";
+import auth from "../firebase/index";
 const ProfilePage = () => {
   const [openPopup, setOpenPopup] = useState(false);
-  return (
+  const [curUser, setCurUser] = useState(null);
+  const user = auth.currentUser;
+  const db = firebase.firestore();
+  // console.log(user)
+  // async function userProfile(db) {
+  //   const userInfo = await db.collection("user").where("uid", "==", user.uid).get();
+  //   return userInfo.docs.map(doc => {
+  //     doc.data()
+  //     console.log(doc)
+  //   });
+  //   console.log()
+  // }
+
+  useEffect(()=>{
+    fetchUser();
+  },[])
+
+  const fetchUser =  () => {
+  db
+    .collection("user")
+    .where("uid", "==", user.uid)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        console.log(doc.data())
+        setCurUser(doc.data());
+      });
+    });
+  }
+  
+
+  console.log()
+  return !curUser ? <div></div>: (
     <Box>
       <Sidebar />
       <Typography
@@ -14,7 +48,13 @@ const ProfilePage = () => {
       >
         Profile
       </Typography>
-      <Paper style={{ height: "300px", margin: "50px 400px",backgroundColor:'#fbfbfb'}}>
+      <Paper
+        style={{
+          height: "300px",
+          margin: "50px 300px",
+          backgroundColor: "#fbfbfb",
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item style={{ justifyContent: "center", alignItems: "center" }}>
             <Box>
@@ -36,7 +76,7 @@ const ProfilePage = () => {
                 marginLeft: "100px",
               }}
             >
-              name here
+              {curUser.FirstName} {curUser.LastName}
             </Typography>
           </Grid>
           <Grid item xs={12} sm container>
@@ -50,7 +90,7 @@ const ProfilePage = () => {
                     marginTop: "20px",
                   }}
                 >
-                  Brand : <span style={{ color: "black" }}>Ringistic</span>
+                  Brand : <span style={{ color: "black" }}>{curUser.Brand}</span>
                 </Typography>
                 <Typography
                   style={{
@@ -71,7 +111,7 @@ const ProfilePage = () => {
                   }}
                 >
                   Phone number:{" "}
-                  <span style={{ color: "black" }}>0812345679</span>
+                  <span style={{ color: "black" }}>{curUser.Phonenumber}</span>
                 </Typography>
                 <Typography
                   style={{
@@ -81,7 +121,7 @@ const ProfilePage = () => {
                     marginTop: "20px",
                   }}
                 >
-                  Email: <span style={{ color: "black" }}>gmail@gmail.com</span>
+                  Email: <span style={{ color: "black" }}>{curUser.Email}</span>
                 </Typography>
               </Grid>
             </Grid>

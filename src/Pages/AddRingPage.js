@@ -18,6 +18,7 @@ function AddRingPage() {
   return (
     <div className={classes.box}>
       <Sidebar />
+    
       <HeadTable />
       <AddRingCard status="Published"/>
       <AddRingCard status="Published"/>
@@ -25,6 +26,8 @@ function AddRingPage() {
       <AddRingCard status="Published"/>
       <AddRingCard status="Published"/>
       <AddRingCard status="Published"/>
+  
+      
     </div>
   );
 }
