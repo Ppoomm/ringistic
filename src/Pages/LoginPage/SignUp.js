@@ -19,12 +19,6 @@ const SignUp = () => {
   const handdlePassword = (e) => {
     setPassWord(e.target.value)
   }
-  const handdleAll = (e) => {
-    setFirstName(e.target.value);
-    setLastName(e.target.value);
-    setPhonenumber(e.target.value);
-    setBrand(e.target.value);
-  }
   const handdleFirstName = (e) =>{
     setFirstName(e.target.value);
   } 
@@ -50,9 +44,10 @@ const SignUp = () => {
         Phonenumber: Phonenumber,
         Brand: Brand,
         uid: curUser.user.uid,
+        TotalRing: "Please fill the form",
         role: "1"
        }
-       await db.collection('user').add(data);
+       await db.collection('user').doc(curUser.user.uid).set(data);
        setIsSignUp(true)
     }catch(error){
       alert(error);

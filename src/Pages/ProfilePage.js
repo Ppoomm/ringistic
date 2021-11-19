@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Box, Paper, Grid, Button } from "@material-ui/core";
 import wed1 from "../assets/images/wed1.png";
 import EditIcon from "@material-ui/icons/Edit";
@@ -21,26 +21,26 @@ const ProfilePage = () => {
   //   console.log()
   // }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchUser();
-  },[])
+  }, []);
 
-  const fetchUser =  () => {
-  db
-    .collection("user")
-    .where("uid", "==", user.uid)
-    .get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        console.log(doc.data())
-        setCurUser(doc.data());
+  const fetchUser = () => {
+    db.collection("user")
+      .where("uid", "==", user.uid)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          console.log(doc.data());
+          setCurUser(doc.data());
+        });
       });
-    });
-  }
-  
+  };
 
-  console.log()
-  return !curUser ? <div></div>: (
+  console.log();
+  return !curUser ? (
+    <div></div>
+  ) : (
     <Box>
       <Sidebar />
       <Typography
@@ -50,7 +50,7 @@ const ProfilePage = () => {
       </Typography>
       <Paper
         style={{
-          height: "300px",
+          height: "350px",
           margin: "50px 300px",
           backgroundColor: "#fbfbfb",
         }}
@@ -61,7 +61,7 @@ const ProfilePage = () => {
               <img
                 style={{
                   backgroundColor: "black",
-                  margin: "30px 100px",
+                  margin: "105px 100px",
                   borderRadius: "300px",
                   width: "150px",
                   height: "150px",
@@ -69,20 +69,11 @@ const ProfilePage = () => {
                 src={wed1}
               />
             </Box>
-            <Typography
-              style={{
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginLeft: "100px",
-              }}
-            >
-              {curUser.FirstName} {curUser.LastName}
-            </Typography>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography
+              <Typography
                   style={{
                     fontSize: "30px",
                     fontWeight: "bold",
@@ -90,7 +81,8 @@ const ProfilePage = () => {
                     marginTop: "20px",
                   }}
                 >
-                  Brand : <span style={{ color: "black" }}>{curUser.Brand}</span>
+                  Name :{" "}
+                  <span style={{ color: "black" }}>{curUser.FirstName} {curUser.LastName}</span>
                 </Typography>
                 <Typography
                   style={{
@@ -100,7 +92,19 @@ const ProfilePage = () => {
                     marginTop: "20px",
                   }}
                 >
-                  Total ring : <span style={{ color: "black" }}>240</span>
+                  Brand :{" "}
+                  <span style={{ color: "black" }}>{curUser.Brand}</span>
+                </Typography>
+                <Typography
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                    color: "#828282",
+                    marginTop: "20px",
+                  }}
+                >
+                  Total ring :{" "}
+                  <span style={{ color: "black" }}>{curUser.TotalRing}</span>
                 </Typography>
                 <Typography
                   style={{
