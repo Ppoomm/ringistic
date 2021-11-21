@@ -37,7 +37,6 @@ const ProfilePage = () => {
       });
   };
 
-  console.log();
   return !curUser ? (
     <div></div>
   ) : (

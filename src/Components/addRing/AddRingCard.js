@@ -5,14 +5,16 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton } from "@material-ui/core";
 
-const AddRingCard = ({ status }) => {
+const AddRingCard = ({ status,ringname,type,available }) => {
+  
+
   return (
     <div className="add-ring__card">
       <Grid container>
         <Grid item md={3}>
           <Box display="flex" justifyContent="center" flexDirection="column">
-            <div className="card-heading">Wedding Rings</div>
-            <div className="card-subheading">Post on 05/21/2021</div>
+            <div className="card-heading">{ringname}</div>
+            <div className="card-subheading">{type}</div>
           </Box>
         </Grid>
         <Grid item md={3}>
@@ -32,7 +34,7 @@ const AddRingCard = ({ status }) => {
         </Grid>
         <Grid item md={3}>
           <Box display="flex" alignItems="center" className="box-full__height">
-            <div className="card-heading">Out of Stock</div>
+            <div className="card-heading">{available}</div>
           </Box>
         </Grid>
         <Grid item md={3}>
