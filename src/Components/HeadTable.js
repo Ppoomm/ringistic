@@ -34,12 +34,12 @@ const HeadTable = () => {
   return (
     <Fragment>
       <Box display="flex" justifyContent="center">
-        <OutlinedInput
+        {/* <OutlinedInput
           id="time"
           placeholder="Search"
           className={classes.searchInput}
           startAdornment={<EditIcon classes={{ root: classes.searchIcon }} />}
-        />
+        /> */}
       </Box>
       <Box
         borderBottom={1}
@@ -71,9 +71,10 @@ const HeadTable = () => {
           </Grid>
         </Grid>
       </Box>
-      <AddNewRing openPopup = {openPopup} setOpenPopup={setOpenPopup}>
-        
-      </AddNewRing>
+      <AddNewRing
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      ></AddNewRing>
     </Fragment>
   );
 };

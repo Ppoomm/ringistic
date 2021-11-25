@@ -7,6 +7,7 @@ import AddRingCard from "../Components/addRing/AddRingCard";
 import Sidebar from "../Components/Sidebar";
 import firebase from "firebase/compat";
 import auth from "../firebase/index";
+import { Typography } from "@material-ui/core";
 const useStyles = makeStyles({
   box: {
     padding: "36px",
@@ -14,7 +15,8 @@ const useStyles = makeStyles({
 });
 
 function AddRingPage() {
-  const [ringInfo, setRingInfo] = useState(null);
+  const [ringInfo, setRingInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const user = auth.currentUser;
   const db = firebase.firestore();
 
@@ -23,31 +25,43 @@ function AddRingPage() {
   }, []);
 
   const fetchRing = () => {
+    setIsLoading(true);
     db.collection("formnewring")
       .where("userID", "==", user.uid)
       .get()
       .then((snapshot) => {
+        let ringList = [];
         snapshot.docs.forEach((doc) => {
-          // console.log(doc.data());
-          setRingInfo(doc.data());
+          ringList.push(doc.data());
         });
+
+        setRingInfo(ringList);
+        setIsLoading(false);
       });
   };
-  
 
   const classes = useStyles();
-  return !ringInfo ? (
-    <div></div>
-  ) : (
+  return (
     <div className={classes.box}>
       <Sidebar />
       <HeadTable />
-      <AddRingCard status={ringInfo.status} ringname={ringInfo.ringname} type={ringInfo.type} available={ringInfo.available} />
-      <AddRingCard status="Published" />
-      <AddRingCard status="Deleted" />
-      <AddRingCard status="Published" />
-      <AddRingCard status="Published" />
-      <AddRingCard status="Published" />
+      {!isLoading && ringInfo.length > 0 ? (
+        ringInfo.map((ring) => (
+          <AddRingCard
+            status={ring.status}
+            ringname={ring.ringname}
+            type={ring.type}
+            available={ring.available}
+            formRingId={ring.formRingId}
+          />
+        ))
+      ) : (
+        <Typography style={{ textAlign: "center", marginTop: "200px" }}>
+          Don't have ring
+        </Typography>
+      )}
+
+      
     </div>
   );
 }

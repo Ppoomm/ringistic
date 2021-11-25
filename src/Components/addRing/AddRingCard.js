@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddRingCard.css";
 import { Grid, Box, Typography } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton } from "@material-ui/core";
+import EditRing from "./EditRing";
+import firebase from "firebase/compat";
+import auth from "../../firebase/index";
+const AddRingCard = ({ status, ringname, type, available, formRingId }) => {
+  const [openPopupEdit, setOpenPopupEdit] = useState(false);
+  const [currentId, setCurrentId] = useState("");
+  const user = auth.currentUser;
+  const db = firebase.firestore();
 
-const AddRingCard = ({ status,ringname,type,available }) => {
-  
+  const handleDelete = async () => {
+    await db
+      .collection("formnewring")
+      .doc(formRingId)
+      .delete()
+      .then(function () {
+        alert("Press ok to confirm");
+      });
+  };
 
   return (
     <div className="add-ring__card">
@@ -39,15 +54,28 @@ const AddRingCard = ({ status,ringname,type,available }) => {
         </Grid>
         <Grid item md={3}>
           <Box display="flex" justifyContent="center" alignItems="center">
-            <IconButton>
-              <EditIcon />
-            </IconButton>
-            <IconButton>
+            <div>
+              <IconButton
+                onClick={() => {
+                  setOpenPopupEdit(true);
+                  setCurrentId(formRingId);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+            </div>
+
+            <IconButton onClick={handleDelete}>
               <DeleteOutlineIcon />
             </IconButton>
           </Box>
         </Grid>
       </Grid>
+      <EditRing
+        openPopupEdit={openPopupEdit}
+        setOpenPopupEdit={setOpenPopupEdit}
+        currentId={currentId}
+      ></EditRing>
     </div>
   );
 };

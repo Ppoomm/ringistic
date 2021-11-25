@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,20 +11,44 @@ import {
   FormControl,
   Select,
 } from "@material-ui/core";
-import { DropzoneArea } from "material-ui-dropzone";
 import firebase from "firebase/compat";
 import { v4 as uuid } from "uuid";
 import auth from "../../firebase/index";
-export default function AddNewRing(props) {
-  const { title, children, openPopup, setOpenPopup } = props;
-  const [ringFile, setRingFile] = useState([]);
+
+export default function EditRing(props) {
+  const { title, children, openPopupEdit, setOpenPopupEdit,currentId } = props;
   const [ringName, setRingName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [available, setAvailable] = useState("");
+  const [ringInfo,setRingInfo]  = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const user = auth.currentUser;
   const db = firebase.firestore();
+ 
+  // Fetch ring with formRingId === currentId
+  useEffect(() => {
+    fetchRing();
+  }, []);
+
+  const fetchRing = () => {
+    setIsLoading(true);
+    db.collection("formnewring")
+      .where("formRingId", "===", currentId)
+      .get()
+      .then((snapshot) => {
+        let ringList = [];
+        snapshot.docs.forEach((doc) => {
+          ringList.push(doc.data());
+        });
+
+        setRingInfo(ringList);
+        setIsLoading(false);
+      });
+  };
+   
+
   const handdleRingName = (e) => {
     setRingName(e.target.value);
   };
@@ -40,14 +64,8 @@ export default function AddNewRing(props) {
   const handdleAvailable = (e) => {
     setAvailable(e.target.value);
   };
-  for (const element of ringFile) {
-    console.log(element.name);
-  }
 
   const handdleSummit = () => {
-
-    const formRingId = uuid();
-
     const data = {
       userID: user.uid,
       ringname: ringName,
@@ -56,25 +74,22 @@ export default function AddNewRing(props) {
       price: price,
       available: available,
       status: "pending",
-      formRingId: formRingId
+  formRingId: currentId
     };
-    for (const element of ringFile) {
-      firebase.storage().ref(user.uid).child(element.name).put(element);
-    }
     db.collection("formnewring")
-      .doc(formRingId)
-      .set(data)
+      .doc(currentId)
+      .update(data)
       .then(function () {
-        setOpenPopup(false);
+        setOpenPopupEdit(false);
         alert("Press ok to confirm");
       });
   };
-  console.log(type)
-  // console.log(ringFile)
   return (
-    <Dialog open={openPopup} fullWidth maxWidth="lg">
+    <Dialog open={openPopupEdit} fullWidth maxWidth="lg">
       <DialogTitle>
-        <div style={{ fontWeight: "bold", fontSize: "22px" }}>Add new ring</div>
+        <div style={{ fontWeight: "bold", fontSize: "22px" }}>
+          Edit ring information
+        </div>
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -82,6 +97,7 @@ export default function AddNewRing(props) {
           label="Ring name"
           type="search"
           variant="standard"
+          value={ringName}
           fullWidth
           onChange={handdleRingName}
         />
@@ -90,6 +106,7 @@ export default function AddNewRing(props) {
           label="Description"
           type="search"
           variant="standard"
+          value={description}
           fullWidth
           style={{ marginTop: "15px" }}
           onChange={handdleDescription}
@@ -100,6 +117,7 @@ export default function AddNewRing(props) {
           label="Price"
           type="search"
           variant="standard"
+          value={price}
           fullWidth
           style={{ marginTop: "15px" }}
           onChange={handdlePrice}
@@ -109,21 +127,12 @@ export default function AddNewRing(props) {
           label="Available"
           type="number"
           variant="standard"
+          value={available}
           fullWidth
           style={{ marginTop: "15px" }}
           onChange={handdleAvailable}
         />
-
-        {/* <TextField
-          id="type"
-          label="Type"
-          type="search"
-          variant="standard"
-          fullWidth
-          style={{ marginTop: "15px" }}
-          onChange={handdleType}
-        /> */}
-        <FormControl fullWidth style={{marginTop:"15px"}}>
+        <FormControl fullWidth style={{ marginTop: "15px" }}>
           <InputLabel id="demo-simple-select-label">Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -139,28 +148,6 @@ export default function AddNewRing(props) {
           </Select>
         </FormControl>
 
-        <div
-          style={{
-            marginTop: "20px",
-            marginBottom: "20px",
-            fontWeight: "bold",
-            fontSize: "18px",
-          }}
-        >
-          Ring file
-        </div>
-        <DropzoneArea
-          acceptedFiles={[".obj", ".FBX", "image/*"]}
-          maxFileSize={50000000000}
-          filesLimit={3}
-          dropzoneText={"Drag and drop .OBJ,FBX and image for cover"}
-          showPreviewsInDropzone={true}
-          showFileNames={true}
-          onAlert={(message, variant) => console.log(`${variant}: ${message}`)}
-          onChange={(files) => {
-            setRingFile(files);
-          }}
-        />
         <Box
           style={{
             marginTop: "25px",
@@ -171,7 +158,7 @@ export default function AddNewRing(props) {
         >
           <Button
             variant="contained"
-            onClick={() => setOpenPopup(false)}
+            onClick={() => setOpenPopupEdit(false)}
             style={{
               backgroundColor: "",
               color: "black",
@@ -180,7 +167,7 @@ export default function AddNewRing(props) {
               marginRight: "20px",
             }}
           >
-            cancel
+            cancle
           </Button>
           <Button
             variant="contained"
