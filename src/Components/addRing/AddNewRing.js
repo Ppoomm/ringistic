@@ -44,11 +44,17 @@ export default function AddNewRing(props) {
     console.log(element.name);
   }
 
-  const handdleSummit = () => {
-
+  const handdleSummit = async () => {
     const formRingId = uuid();
 
-    const data = {
+   
+    let imageUrlList = [];
+    for await (const element of ringFile) {
+      const imageRef = firebase.storage().ref(user.uid).child(element.name);
+      await imageRef.put(element);
+      imageUrlList.push(await imageRef.getDownloadURL());
+    }
+     const data = {
       userID: user.uid,
       ringname: ringName,
       description: description,
@@ -56,11 +62,9 @@ export default function AddNewRing(props) {
       price: price,
       available: available,
       status: "pending",
-      formRingId: formRingId
+      formRingId: formRingId,
+      imageList: imageUrlList
     };
-    for (const element of ringFile) {
-      firebase.storage().ref(user.uid).child(element.name).put(element);
-    }
     db.collection("formnewring")
       .doc(formRingId)
       .set(data)
@@ -69,7 +73,7 @@ export default function AddNewRing(props) {
         alert("Press ok to confirm");
       });
   };
-  console.log(type)
+  console.log(type);
   // console.log(ringFile)
   return (
     <Dialog open={openPopup} fullWidth maxWidth="lg">
@@ -123,7 +127,7 @@ export default function AddNewRing(props) {
           style={{ marginTop: "15px" }}
           onChange={handdleType}
         /> */}
-        <FormControl fullWidth style={{marginTop:"15px"}}>
+        <FormControl fullWidth style={{ marginTop: "15px" }}>
           <InputLabel id="demo-simple-select-label">Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"

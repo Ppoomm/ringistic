@@ -1,3 +1,13 @@
+.inforRing {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid grey;
+  border-radius: 50px;
+  padding: 28px 16px; 
+  margin: 40px 40px 40px 40px;
+}
+
 .card-head {
   font-size: 18px;
   font-weight: bold;

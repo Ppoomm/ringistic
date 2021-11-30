@@ -59,7 +59,6 @@ const ProfilePage = () => {
             <Box>
               <img
                 style={{
-                  backgroundColor: "black",
                   margin: "105px 100px",
                   borderRadius: "300px",
                   width: "150px",
@@ -72,7 +71,7 @@ const ProfilePage = () => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-              <Typography
+                <Typography
                   style={{
                     fontSize: "30px",
                     fontWeight: "bold",
@@ -81,7 +80,9 @@ const ProfilePage = () => {
                   }}
                 >
                   Name :{" "}
-                  <span style={{ color: "black" }}>{curUser.FirstName} {curUser.LastName}</span>
+                  <span style={{ color: "black" }}>
+                    {curUser.FirstName} {curUser.LastName}
+                  </span>
                 </Typography>
                 <Typography
                   style={{
