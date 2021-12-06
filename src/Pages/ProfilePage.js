@@ -11,15 +11,6 @@ const ProfilePage = () => {
   const [curUser, setCurUser] = useState(null);
   const user = auth.currentUser;
   const db = firebase.firestore();
-  // console.log(user)
-  // async function userProfile(db) {
-  //   const userInfo = await db.collection("user").where("uid", "==", user.uid).get();
-  //   return userInfo.docs.map(doc => {
-  //     doc.data()
-  //     console.log(doc)
-  //   });
-  //   console.log()
-  // }
 
   useEffect(() => {
     fetchUser();
@@ -30,13 +21,23 @@ const ProfilePage = () => {
       .where("uid", "==", user.uid)
       .get()
       .then((snapshot) => {
+        let profilePic = [];
         snapshot.docs.forEach((doc) => {
-          console.log(doc.data());
-          setCurUser(doc.data());
+          const userDoc = doc.data();
+          const proImageList = userDoc.imageList.filter(
+            (url) =>
+              url.includes("jpg") || url.includes("jpeg") || url.includes("png")
+          );
+         console.log(proImageList[0])
+         profilePic.push({
+            ...userDoc,
+            imgUrl: proImageList[0],
+          });
+          setCurUser(userDoc);
         });
       });
   };
-
+  
   return !curUser ? (
     <div></div>
   ) : (
@@ -64,7 +65,7 @@ const ProfilePage = () => {
                   width: "150px",
                   height: "150px",
                 }}
-                src={wed1}
+                src={curUser.imageList[0] ?? wed1}
               />
             </Box>
           </Grid>

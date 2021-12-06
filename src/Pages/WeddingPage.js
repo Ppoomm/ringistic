@@ -31,7 +31,7 @@ const WeddingPage = () => {
           const ringDoc = doc.data();
 
           const ringImageList = ringDoc.imageList.filter(
-            (url) => url.includes("jpg") || url.includes("jpeg")
+            (url) => url.includes("jpg") || url.includes("jpeg") || url.includes("png")
           );
 
           ringList.push({

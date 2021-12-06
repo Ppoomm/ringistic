@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box, Typography } from "@material-ui/core";
-import CardDashboard from "../Components/Card";
 import "./InformationRing.css";
 import wed1 from "../assets/images/wed1.png";
 import wed2 from "../assets/images/wed2.png";
@@ -32,7 +31,7 @@ const DashboardPage = () => {
           const ringDoc = doc.data();
 
           const ringImageList = ringDoc.imageList.filter(
-            (url) => url.includes("jpg") || url.includes("jpeg")
+            (url) => url.includes("jpg") || url.includes("jpeg") || url.includes("png")
           );
 
           ringList.push({

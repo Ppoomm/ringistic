@@ -18,6 +18,7 @@ export default function EditPopup(props) {
   const [LastName, setLastName] = useState("");
   const [TotalRing, setTotalRing] = useState("");
   const [Phonenumber, setPhonenumber] = useState("");
+  const [profilePic, setProfilePic] = useState([]);
   const [Email, setEmail] = useState("");
   const user = auth.currentUser;
   const db = firebase.firestore();
@@ -39,8 +40,15 @@ export default function EditPopup(props) {
   // const handdleEmail = (event) => {
   //   setEmail(user);
   // };
-  
-  const handdleEditUser = () => {
+
+  const handdleEditUser = async () => {
+    let imageUrlList = [];
+    for await (const element of profilePic) {
+      const imageRef = firebase.storage().ref(user.uid).child(element.name);
+      await imageRef.put(element);
+      imageUrlList.push(await imageRef.getDownloadURL());
+    }
+
     const data = {
       FirstName: FirstName,
       LastName: LastName,
@@ -50,6 +58,7 @@ export default function EditPopup(props) {
       TotalRing: TotalRing,
       uid: user.uid,
       role: "1",
+      imageList: imageUrlList,
     };
     db.collection("user")
       .doc(user.uid)
@@ -75,7 +84,7 @@ export default function EditPopup(props) {
         });
       });
   };
-  console.log(curUser)
+  console.log(curUser);
 
   return (
     <Dialog open={openPopup} fullWidth maxWidth="lg">
@@ -144,7 +153,15 @@ export default function EditPopup(props) {
         </div>
         <DropzoneArea
           acceptedFiles={["image/*"]}
-          onChange={(files) => console.log("Files:", files)}
+          maxFileSize={50000000000}
+          filesLimit={1}
+          dropzoneText={"Drag and drop image for Profile picture"}
+          showPreviewsInDropzone={true}
+          showFileNames={true}
+          onAlert={(message, variant) => console.log(`${variant}: ${message}`)}
+          onChange={(files) => {
+            setProfilePic(files);
+          }}
         />
         <Box
           style={{
@@ -154,6 +171,19 @@ export default function EditPopup(props) {
             justifyContent: "flex-end",
           }}
         >
+          <Button
+            variant="contained"
+            onClick={() =>  setOpenPopup(false)}
+            style={{
+              backgroundColor: "",
+              color: "black",
+              borderRadius: "30px",
+              padding: "15px 40px",
+              marginRight: "20px",
+            }}
+          >
+            cancel
+          </Button>
           <Button
             variant="contained"
             onClick={handdleEditUser}
