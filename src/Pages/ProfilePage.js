@@ -43,11 +43,11 @@ const ProfilePage = () => {
   ) : (
     <Box>
       <Sidebar />
-      <Typography
+      <div
         style={{ fontSize: "30px", fontWeight: "bold", margin: "40px 250px" }}
       >
         Profile
-      </Typography>
+      </div>
       <Paper
         style={{
           height: "350px",
@@ -72,10 +72,10 @@ const ProfilePage = () => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography
+                <div
                   style={{
                     fontSize: "30px",
-                    fontWeight: "bold",
+                  
                     color: "#828282",
                     marginTop: "20px",
                   }}
@@ -84,50 +84,50 @@ const ProfilePage = () => {
                   <span style={{ color: "black" }}>
                     {curUser.FirstName} {curUser.LastName}
                   </span>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   style={{
                     fontSize: "30px",
-                    fontWeight: "bold",
+                   
                     color: "#828282",
                     marginTop: "20px",
                   }}
                 >
                   Brand :{" "}
                   <span style={{ color: "black" }}>{curUser.Brand}</span>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   style={{
                     fontSize: "30px",
-                    fontWeight: "bold",
+                  
                     color: "#828282",
                     marginTop: "20px",
                   }}
                 >
                   Total ring :{" "}
                   <span style={{ color: "black" }}>{curUser.TotalRing}</span>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   style={{
                     fontSize: "30px",
-                    fontWeight: "bold",
+                   
                     color: "#828282",
                     marginTop: "20px",
                   }}
                 >
                   Phone number:{" "}
                   <span style={{ color: "black" }}>{curUser.Phonenumber}</span>
-                </Typography>
-                <Typography
+                </div>
+                <div
                   style={{
                     fontSize: "30px",
-                    fontWeight: "bold",
+                    
                     color: "#828282",
                     marginTop: "20px",
                   }}
                 >
                   Email: <span style={{ color: "black" }}>{curUser.Email}</span>
-                </Typography>
+                </div>
               </Grid>
             </Grid>
             <Grid item style={{ margin: "20px 50px" }}>

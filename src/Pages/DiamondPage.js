@@ -57,7 +57,7 @@ const DiamondPage = () => {
             flexDirection="column"
             alignItems="center"
           >
-            <Typography
+            <div
               style={{
                 fontWeight: "bold",
                 marginTop: "50px",
@@ -65,7 +65,7 @@ const DiamondPage = () => {
               }}
             >
               Ring Overview
-            </Typography>
+            </div>
           </Box>
         </Grid>
       </Grid>

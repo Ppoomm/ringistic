@@ -58,7 +58,7 @@ const EngagementPage = () => {
             flexDirection="column"
             alignItems="center"
           >
-            <Typography
+            <div
               style={{
                 fontWeight: "bold",
                 marginTop: "50px",
@@ -66,7 +66,7 @@ const EngagementPage = () => {
               }}
             >
               Ring Overview
-            </Typography>
+            </div>
           </Box>
         </Grid>
       </Grid>

@@ -58,7 +58,7 @@ const DashboardPage = () => {
             flexDirection="column"
             alignItems="center"
           >
-            <Typography
+            <div
               style={{
                 fontWeight: "bold",
                 marginTop: "50px",
@@ -66,7 +66,7 @@ const DashboardPage = () => {
               }}
             >
               Ring Overview
-            </Typography>
+            </div>
           </Box>
         </Grid>
       </Grid>
