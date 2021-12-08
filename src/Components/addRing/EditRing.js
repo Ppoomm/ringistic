@@ -35,7 +35,7 @@ export default function EditRing(props) {
   const fetchRing = () => {
     setIsLoading(true);
     db.collection("formnewring")
-      .where("formRingId", "===", currentId)
+      .where("formRingId", "==", currentId)
       .get()
       .then((snapshot) => {
         let ringList = [];

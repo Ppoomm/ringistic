@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const HeadTable = () => {
+const HeadTable = ({handleSubmit}) => {
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState(false);
   return (
@@ -72,6 +72,7 @@ const HeadTable = () => {
         </Grid>
       </Box>
       <AddNewRing
+        handleSubmit={handleSubmit}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       ></AddNewRing>

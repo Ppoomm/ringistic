@@ -7,21 +7,14 @@ import { IconButton } from "@material-ui/core";
 import EditRing from "./EditRing";
 import firebase from "firebase/compat";
 import auth from "../../firebase/index";
-const AddRingCard = ({ status, ringname, type, available, formRingId }) => {
+import CheckIcon from '@material-ui/icons/Check';
+const AddRingCard = ({ status, ringname, type, available, formRingId ,handleDelete,handleAccept}) => {
   const [openPopupEdit, setOpenPopupEdit] = useState(false);
   const [currentId, setCurrentId] = useState("");
   const user = auth.currentUser;
   const db = firebase.firestore();
 
-  const handleDelete = async () => {
-    await db
-      .collection("formnewring")
-      .doc(formRingId)
-      .delete()
-      .then(function () {
-        alert("Press ok to confirm");
-      });
-  };
+
 
   return (
     <div className="add-ring__card">
@@ -65,8 +58,12 @@ const AddRingCard = ({ status, ringname, type, available, formRingId }) => {
               </IconButton>
             </div>
 
-            <IconButton onClick={handleDelete}>
+            <IconButton onClick={() => handleDelete(formRingId)}>
               <DeleteOutlineIcon />
+            </IconButton>
+            <IconButton onClick={() => handleAccept(formRingId)}>
+              <CheckIcon/>
+
             </IconButton>
           </Box>
         </Grid>

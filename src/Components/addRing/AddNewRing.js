@@ -16,7 +16,7 @@ import firebase from "firebase/compat";
 import { v4 as uuid } from "uuid";
 import auth from "../../firebase/index";
 export default function AddNewRing(props) {
-  const { title, children, openPopup, setOpenPopup } = props;
+  const { title, children, openPopup, setOpenPopup, handleSubmit } = props;
   const [ringFile, setRingFile] = useState([]);
   const [ringName, setRingName] = useState("");
   const [description, setDescription] = useState("");
@@ -45,33 +45,9 @@ export default function AddNewRing(props) {
   }
 
   const handdleSummit = async () => {
-    const formRingId = uuid();
-
-   
-    let imageUrlList = [];
-    for await (const element of ringFile) {
-      const imageRef = firebase.storage().ref(user.uid).child(element.name);
-      await imageRef.put(element);
-      imageUrlList.push(await imageRef.getDownloadURL());
-    }
-     const data = {
-      userID: user.uid,
-      ringname: ringName,
-      description: description,
-      type: type,
-      price: price,
-      available: available,
-      status: "pending",
-      formRingId: formRingId,
-      imageList: imageUrlList
-    };
-    db.collection("formnewring")
-      .doc(formRingId)
-      .set(data)
-      .then(function () {
-        setOpenPopup(false);
-        alert("Press ok to confirm");
-      });
+    await handleSubmit(ringFile, ringName, description, type, price, available);
+    setOpenPopup(false);
+    alert("Press ok to confirm");
   };
   console.log(type);
   // console.log(ringFile)
